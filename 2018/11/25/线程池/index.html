@@ -5,15 +5,19 @@
   
 
   
-  <title>GuHao0822</title>
+  <title>线程池 | GuHao0822</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="GuHao0822">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="线程池的作用 利用线程池管理并复用线程、控制最大并发数 实现任务线程队列缓存策略和拒绝策略 实现某些与时间相关的功能，如定时执行、周期执行 隔离线程环境，避免消耗速度不一样的任务放在相同线程池中  如何构造线程池线程池构造方法 ThreadPoolExecutor1234567891011public ThreadPoolExecutor(    int corePoolSize,    int">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线程池">
+<meta property="og:url" content="http://yoursite.com/2018/11/25/线程池/index.html">
 <meta property="og:site_name" content="GuHao0822">
+<meta property="og:description" content="线程池的作用 利用线程池管理并复用线程、控制最大并发数 实现任务线程队列缓存策略和拒绝策略 实现某些与时间相关的功能，如定时执行、周期执行 隔离线程环境，避免消耗速度不一样的任务放在相同线程池中  如何构造线程池线程池构造方法 ThreadPoolExecutor1234567891011public ThreadPoolExecutor(    int corePoolSize,    int">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-11-25T02:10:59.856Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="GuHao0822">
+<meta name="twitter:title" content="线程池">
+<meta name="twitter:description" content="线程池的作用 利用线程池管理并复用线程、控制最大并发数 实现任务线程队列缓存策略和拒绝策略 实现某些与时间相关的功能，如定时执行、周期执行 隔离线程环境，避免消耗速度不一样的任务放在相同线程池中  如何构造线程池线程池构造方法 ThreadPoolExecutor1234567891011public ThreadPoolExecutor(    int corePoolSize,    int">
   
     <link rel="alternate" href="/atom.xml" title="GuHao0822" type="application/atom+xml">
   
@@ -60,9 +64,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-线程池" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-线程池" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/11/25/线程池/" class="article-date">
   <time datetime="2018-11-24T16:00:00.000Z" itemprop="datePublished">2018-11-25</time>
@@ -75,8 +77,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/25/线程池/">线程池</a>
+    <h1 class="article-title" itemprop="name">
+      线程池
     </h1>
   
 
@@ -154,103 +156,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-JVM垃圾回收" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/08/JVM垃圾回收/" class="article-date">
-  <time datetime="2018-11-07T16:00:00.000Z" itemprop="datePublished">2018-11-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/08/JVM垃圾回收/">JVM垃圾回收</a>
-    </h1>
+    <a href="/2018/11/08/JVM垃圾回收/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JVM垃圾回收</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>免费的才最贵</p>
-</blockquote>
-<h2 id="如何辨别一个对象是否存活"><a href="#如何辨别一个对象是否存活" class="headerlink" title="如何辨别一个对象是否存活"></a>如何辨别一个对象是否存活</h2><h3 id="引用计数法"><a href="#引用计数法" class="headerlink" title="引用计数法"></a>引用计数法</h3><p>为每个对象添加一个引用计数器，统计指向该对象的引用个数，一旦某个对象的引用计数器为0，则表示该对象已经死亡，可以被回收。</p>
-<p>具体实现，如果有一个引用，被赋值为某一个对象，那么该对象的引用计数器则加1,。如果一个指向某一个对象的引用，被赋值给其他值，那边该对象的引用计数器减1。实现起来，需要拦截所有引用更新的操作，并增减目标对象的引用计数器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class ReferenceCountingGC &#123;</span><br><span class="line">    public Object instance = null;</span><br><span class="line">    private static final int MB = 1024*1024;</span><br><span class="line">    private byte[] bigSize = new byte[2 * MB];</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        ReferenceCountingGC a = new ReferenceCountingGC();</span><br><span class="line">        ReferenceCountingGC b = new ReferenceCountingGC();</span><br><span class="line">        a.instance = b;</span><br><span class="line">        b.instance = a;</span><br><span class="line"></span><br><span class="line">        a = null;</span><br><span class="line">        b = null;</span><br><span class="line"></span><br><span class="line">        System.gc();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>如果采用引用计数法上面代码中的对象将不会被回收，事实上JVM 是会回收这些对象的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">People 张三 = new People();</span><br><span class="line">People 李四 = new People();</span><br><span class="line">People 王五 = new People();</span><br><span class="line"></span><br><span class="line">People 管理员 = 张三;</span><br><span class="line">// 张三的引用 + 1</span><br><span class="line"></span><br><span class="line">管理员 = 李四;</span><br><span class="line">//张三的引用 + 1</span><br><span class="line">//李四的引用 - 1</span><br></pre></td></tr></table></figure>
-<p>问题，需要而额外的空间来存储计数器，更新操作也会很频繁，并且无法处理循环引用对象</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Dog newDog = new Dog();</span><br><span class="line">Tail newTail = new Tail();</span><br><span class="line">newDog.tail = newTail;</span><br><span class="line">newTail.dog = newDog;</span><br></pre></td></tr></table></figure>
-<h3 id="可达性分析算法"><a href="#可达性分析算法" class="headerlink" title="可达性分析算法"></a>可达性分析算法</h3><p>将一系列GC Roots作为初始的存活对象合集(live set)，然后从该合集出发，探索所有能够被该合集引用到的对象，并将其加入到该合集中，这个过程称为标记（mark）,未被探索到的对象便是死亡的，是可以回收的</p>
-<p>GC Roots 可以理解为由堆外指向堆内的引用，包括</p>
-<ol>
-<li>Java 方法栈帧中的局部变量</li>
-<li>已加载类的静态变量</li>
-<li>JNI handles</li>
-<li>已启动且未停止的Java线程</li>
-</ol>
-<p>问题，在多线程环境下，其他线程可能会更新已经访问过的对象引用，从而造成误报（将引用设置为null）或者漏报（将引用设置为未被访问过的对象）</p>
-<p><strong>解决方法 stop-the-world 和 安全点</strong></p>
-<p>(stop-the-world)停止其他非垃圾回收线程的工作，直至完成垃圾回收，造成了回收暂停时间（GC Pause）。</p>
-<p>stop-the-world是通过安全点（safepoint）机制来实现的。当JVM收到stop-the-world请求，会等待所有的线程到达安全点，才允许请求stop-the-world的线程进行独占工作。</p>
-<p>安全点的初始目的不是让其他线程停下，而是找到一个稳定的执行状态（JVM的堆栈不会发生变化），使垃圾回收器可以安全地执行可达性分析。只要不离开这个安全点，JVM就能够在垃圾回收的同时，继续运行这段本地代码。</p>
-<p>安全点：当Java程序通过JNI执行本地代码时，如果这段代码不访问Java对象、调用Java方法或者返回至原Java方法，那么JVM的堆栈不会发生变化，表示这段本地代码可以作为一个安全点。此外，解释执行字节码、执行JIT生成的机器码和线程堵塞（堵塞的线程处于JVm线程调度器的掌握）属于安全点</p>
-<p>解释执行时，字节码与字节码之间都可以作为安全点，当有安全点请求时JVM会执行一条字节码进行一次安全点检测</p>
-<p>执行即时编译器（JIT）生成的机器码由于直接运行在底层硬件之上，不受JVM掌控，因此在生成时，JIT就会插入安全点检测，以避免机器码长时间没有安全点检测的情况。HotSpot虚拟机的做法便是在生成代码的方法出口以及非计数循环的循环回边（back-edge）处插入安全点检测。</p>
-<p><strong>垃圾回收的三种方式</strong></p>
-<p>对存活对象标记完成后，就可以开始对死亡对象的回收，主流方式有三种</p>
-<p>清除（sweep）, 把死亡对象所占据的内存标记为空闲内存，并记录在一个空闲列表（free list）之中。当需要新建对象时，内存管理模块便会从该空闲列表中寻找空闲内存,并划分给新建对象。<br>缺点，内存碎片，由于JVM堆中的对象必须连续分布，因此可能出现总空闲内存足够，但是无法分配的情况。<br>分配效率低，JVM需要逐个访问列表中的项，来查找能够放入新建对象的空闲内存</p>
-<p>压缩（compact）,即把存活的对象聚集到内存区域的起始位置，从而留下一段连续的内存空间，避免出现碎片化的问题，但是压缩算法的性能开销较大。</p>
-<p>复制（copy）,即内存区域分为两等分，分别使用两个指针from 和 to来维护，并且只是用from指针指向的内存区域来分配内存。当发生垃圾回收时，就把存活的对象复制到to指针指向的内存区域中，并且交换from指针和to指针的内容。可以解决碎片化问题，性能开销也不大，但是堆空间的使用效率很低，只有一半。</p>
-<h2 id="JVM的堆划分"><a href="#JVM的堆划分" class="headerlink" title="JVM的堆划分"></a>JVM的堆划分</h2><blockquote>
-<p>28规则，大部分的Java对象只存活小段时间，存活的Java对象会存活很长一段时间</p>
-</blockquote>
-<p>JVM 将堆划分为新生代和老年代，新生代又被划分为Eden区，以及两个大小相同的Survivor区。默认情况下，JVM采取的是一种动态分配的策略（对应JVM参数-XX:+UsePSAdapativeSurvivorSizePolicy）,根据生成对象的速率，以及Survivor区的使用情况动态调整Eden区和Survivor区的比例。也可以通过参数 -XX:Survivor来固定这个比例。两个Survivor 有一个 Survivor 会为空，所以比例越低，堆空间浪费越多。</p>
-<p>调用new指令时，JVM会在Eden区中划出一块内存作为存储对象,由于堆空间是线程共享的，所以如果直接划分需要进行同步，不然会出现两个对象共用一段内存。JVM会为每个线程预先划分多段内存，并且只允许该线程使用被分配的内存。如果用完就需要再申请，被称为TLAB(Thread Local Allocation Buffer)。线程需要维护两个指针，分析指向TLAB的头尾。每个线程可以向JVM申请一段连续的内存，比如2048字节，作为线程私有的TLAB。</p>
-<p>new 指令通过指针加法（bump the pointer）来实现，就是把指向空余内存的位置的指针加上所请求的字节数。如果加法后空余内存指针小于或等于指向末尾的指针，则代表分配成功，否则需要当前线程重新申请新的TLAB</p>
-<p>Eden区空间耗尽后，JVM会触发Minor GC，从而收集新生代的垃圾，存活下来的对象会被送到Survivor区。新生代有两个Survivor区，分别用from 和 to 来指代，to指向的Survivor区是空的。</p>
-<p>发生Minor GC 时，Eden区和from指向的Survivor区中的存活对象会被复制到to指向的Survivor区中，然后交换from 和 to 指针，保证下一次Minor GC时，to指向的Survior区还是空的</p>
-<p>JVM会记录Survivor区中的对象被来回复制的次数,默认如果超过15次，就会晋升至老年代，如果单个Survivor区被占用超过50%，复制次数较高的对象也会被晋升至老年代。</p>
-<p>Minor GC时，使用标记-复制算法，将Survivor区中的老存活对象晋升至老年代，将剩余的存活对象以及Eden区的存活对象复制到另一个Survivor区中。根据28规则，Eden区的对象基本都死亡了，那么需要复制的数据将非常少，所以采用标记-复制算法</p>
-<h3 id="卡表（Card-Table）"><a href="#卡表（Card-Table）" class="headerlink" title="卡表（Card Table）"></a>卡表（Card Table）</h3><p>Minor GC 的一个好处是不用对整个堆进行回收，但是它却有一个问题，老年代对象可能会引用新生代的对象，即标记存活对象的时候，需要扫描老年代的对象，如果有对新生代对象的引用，也要被作为 GC Roots。 Hot Spot 使用卡表将整个堆划分为若干个512字节的卡，并且维护一个卡表，用来存储每张卡的一个标识位，代表对应的卡是否可能存有指向新生代对象的引用，如此在进行Minor GC的时候，可以不用扫描整个老年代，而是在卡表中寻找对应卡，将其中的对象加入到Minor GC的 GC Roots中，然后将标志位清零。</p>
-<p>Minor GC 伴随着存活对象的复制，复制需要更新指向该对象的引用。所以在更新引用的同时，引用所在卡的标识位会被继续更新，可以保证脏卡（标识位不为0的卡）中包含指向新生代对象的引用。</p>
-<h3 id="JVM中的垃圾回收器"><a href="#JVM中的垃圾回收器" class="headerlink" title="JVM中的垃圾回收器"></a>JVM中的垃圾回收器</h3><p>新生代: Serial, Parallel Scavenge 和Parallel New 都采用标记-复制算法。Serial 单线程， Parallel New 可以看成 Serial的多线程版本.Parallel Scavenge 和 Parallel New 类似，但更加注重吞吐率。</p>
-<p>老年代: Serial Old, Parallel Old 和 CMS. Serial Old 和 Parallel Old 是标记-压缩算法，前者为单线程，后者为多线程。</p>
-<p>CMS 采用标记-清除算法，并且是并发的，只有几个操作需要 stop-the-world之外，可以在应用程序运行过程中进行垃圾回收，如果失败，会使用 serial old 和 parallel old 进行回收，因为G1的出现，CMS 在 Java 9 中已经废弃</p>
-<p>G1(Garbage First) 是一个横跨新生代和老年代的垃圾回收器。实际上已经打乱了前面所说的堆结构，直接将堆分成极其多个区域，每个区域都可以充当Eden区，Survivor区或者老年代中的一个。采用标记-压缩算法，可以并发进行垃圾回收。在选择进行垃圾回收的区域时，会优先回收死亡对象较多的区域，这也是G1名字的由来。</p>
-<h3 id="JVM中的垃圾回收器-2"><a href="#JVM中的垃圾回收器-2" class="headerlink" title="JVM中的垃圾回收器-2"></a>JVM中的垃圾回收器-2</h3><p>Serial回收器: 用于YGC, 采用串行单线程的方式完成GC任务，会产生STW(Stop The World),即垃圾回收的某个阶段会暂停整个应用程序的执行。其中YGC时是使用 标记-复制, FGC是使用 标记-整理</p>
-<p>CMS回收器：Concurrent Mark Sweep Collector, </p>
-<ul>
-<li>初始标记（Initial Mark）</li>
-<li>并发标记（Concurrent Mark）</li>
-<li>重新标记 (Remark)</li>
-<li>并发清除 (Concurrent Sweep)<br>初始标记和重新标记会引起STW, 并发标记和并发清除可以和应用程序并发执行。采用 标记-清除，会产生大量空间碎片，可以配置UseCMSCompactAtFullCollection参数，强制JVM在FGC完成后对老年代进行压缩，执行空间碎片整理，此时也会引发STW</li>
-</ul>
-<p>G1回收器：将Java堆空间分割成了若干相同大小的区域，即region,包括Eden、Survivor、Old、Humongous四种类型，Humongous是特殊的Old类型，专门放置大型对象，意味着不需要一个连续的内存空间管理对象。G1将空间分为多个区域，优先回收垃圾最多的区域。G1采用的是 标记-复制，不会产生大量的空间碎片，且可预测停顿时间，可以通过jstat来查看</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/08/JVM垃圾回收/" data-id="cjow91oq70001b8uptkhw0ewv" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-
 
 </section>
         
