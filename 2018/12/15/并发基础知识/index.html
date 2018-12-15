@@ -5,19 +5,19 @@
   
 
   
-  <title>GuHao0822</title>
+  <title>并发基础知识 | GuHao0822</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="并发基础知识线程的基本概念创建线程线程表示一条单独的执行流，它有自己的程序执行计数器，有自己的栈。  继承Thread123456789101112131415public class HelloThread extends Thread &amp;#123;    @Override    public void run() &amp;#123;        System.out.println(&quot;threa">
-<meta property="og:type" content="website">
-<meta property="og:title" content="GuHao0822">
-<meta property="og:url" content="http://yoursite.com/并发基础知识.html">
+  <meta name="description" content="线程的基本概念创建线程线程表示一条单独的执行流，它有自己的程序执行计数器，有自己的栈。  继承Thread123456789101112131415public class HelloThread extends Thread &amp;#123;    @Override    public void run() &amp;#123;        System.out.println(&quot;thread name">
+<meta property="og:type" content="article">
+<meta property="og:title" content="并发基础知识">
+<meta property="og:url" content="http://yoursite.com/2018/12/15/并发基础知识/index.html">
 <meta property="og:site_name" content="GuHao0822">
-<meta property="og:description" content="并发基础知识线程的基本概念创建线程线程表示一条单独的执行流，它有自己的程序执行计数器，有自己的栈。  继承Thread123456789101112131415public class HelloThread extends Thread &amp;#123;    @Override    public void run() &amp;#123;        System.out.println(&quot;threa">
+<meta property="og:description" content="线程的基本概念创建线程线程表示一条单独的执行流，它有自己的程序执行计数器，有自己的栈。  继承Thread123456789101112131415public class HelloThread extends Thread &amp;#123;    @Override    public void run() &amp;#123;        System.out.println(&quot;thread name">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-15T03:39:06.098Z">
+<meta property="og:updated_time" content="2018-12-15T03:44:24.622Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="GuHao0822">
-<meta name="twitter:description" content="并发基础知识线程的基本概念创建线程线程表示一条单独的执行流，它有自己的程序执行计数器，有自己的栈。  继承Thread123456789101112131415public class HelloThread extends Thread &amp;#123;    @Override    public void run() &amp;#123;        System.out.println(&quot;threa">
+<meta name="twitter:title" content="并发基础知识">
+<meta name="twitter:description" content="线程的基本概念创建线程线程表示一条单独的执行流，它有自己的程序执行计数器，有自己的栈。  继承Thread123456789101112131415public class HelloThread extends Thread &amp;#123;    @Override    public void run() &amp;#123;        System.out.println(&quot;thread name">
   
     <link rel="alternate" href="/atom.xml" title="GuHao0822" type="application/atom+xml">
   
@@ -64,19 +64,29 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="page-" class="article article-type-page" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-并发基础知识" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/并发基础知识.html" class="article-date">
-  <time datetime="2018-12-15T03:39:06.098Z" itemprop="datePublished">2018-12-15</time>
+    <a href="/2018/12/15/并发基础知识/" class="article-date">
+  <time datetime="2018-12-14T16:00:00.000Z" itemprop="datePublished">2018-12-15</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      并发基础知识
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="并发基础知识"><a href="#并发基础知识" class="headerlink" title="并发基础知识"></a>并发基础知识</h1><h2 id="线程的基本概念"><a href="#线程的基本概念" class="headerlink" title="线程的基本概念"></a>线程的基本概念</h2><h3 id="创建线程"><a href="#创建线程" class="headerlink" title="创建线程"></a>创建线程</h3><p><strong>线程表示一条单独的执行流，它有自己的程序执行计数器，有自己的栈。</strong></p>
+        <h2 id="线程的基本概念"><a href="#线程的基本概念" class="headerlink" title="线程的基本概念"></a>线程的基本概念</h2><h3 id="创建线程"><a href="#创建线程" class="headerlink" title="创建线程"></a>创建线程</h3><p><strong>线程表示一条单独的执行流，它有自己的程序执行计数器，有自己的栈。</strong></p>
 <ul>
 <li>继承Thread<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"thread name: "</span> + Thread.currentThread().getName());</span><br><span class="line">        System.out.println(<span class="string">"hello"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Thread thread = <span class="keyword">new</span> HelloThread();</span><br><span class="line">        thread.start();</span><br><span class="line">        thread.run();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
@@ -168,13 +178,23 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/并发基础知识.html" data-id="cjpowywcp00006wupgdtuxyx6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/12/15/并发基础知识/" data-id="cjpox24s700003oupv8eov9hr" class="article-share-link">Share</a>
       
       
     </footer>
   </div>
   
     
+<nav id="article-nav">
+  
+  
+    <a href="/2018/12/02/类的继承/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">类的继承</div>
+    </a>
+  
+</nav>
+
   
 </article>
 
@@ -205,6 +225,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/12/15/并发基础知识/">并发基础知识</a>
+          </li>
         
           <li>
             <a href="/2018/12/02/类的继承/">类的继承</a>
