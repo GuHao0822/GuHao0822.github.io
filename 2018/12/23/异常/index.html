@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>异常 | GuHao0822</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="异常简介先来研究一下 NullPointerException 和 NumberFormatException NullPointerException12345678910public class ExceptionTest &amp;#123;    public static void main(String[] args) &amp;#123;        String s = null;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="异常">
+<meta property="og:url" content="http://yoursite.com/2018/12/23/异常/index.html">
+<meta property="og:site_name" content="GuHao0822">
+<meta property="og:description" content="异常简介先来研究一下 NullPointerException 和 NumberFormatException NullPointerException12345678910public class ExceptionTest &amp;#123;    public static void main(String[] args) &amp;#123;        String s = null;">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-12-23T05:24:47.910Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="异常">
+<meta name="twitter:description" content="异常简介先来研究一下 NullPointerException 和 NumberFormatException NullPointerException12345678910public class ExceptionTest &amp;#123;    public static void main(String[] args) &amp;#123;        String s = null;">
+  
+    <link rel="alternate" href="/atom.xml" title="GuHao0822" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">GuHao0822</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-异常" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/23/异常/" class="article-date">
+  <time datetime="2018-12-22T16:00:00.000Z" itemprop="datePublished">2018-12-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      异常
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="异常简介"><a href="#异常简介" class="headerlink" title="异常简介"></a>异常简介</h2><p>先来研究一下 NullPointerException 和 NumberFormatException</p>
+<h3 id="NullPointerException"><a href="#NullPointerException" class="headerlink" title="NullPointerException"></a>NullPointerException</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExceptionTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String s = <span class="keyword">null</span>;</span><br><span class="line">        s.indexOf(<span class="string">"a"</span>);</span><br><span class="line">        System.out.println(<span class="string">"end"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Exception in thread <span class="string">"main"</span> java.lang.NullPointerException</span><br><span class="line">	at javabase.exception.ExceptionTest.main(ExceptionTest.java:<span class="number">6</span>)</span><br></pre></td></tr></table></figure>
+<p>当执行s.indexOf(“a”)的时候，JVM发现s的值为null,没有办法继续执行了，这时就启用异常处理机制，首先创建一个异常对象，这里是NullPointerException的对象，然后查找看谁能处理这个异常，在示例代码中，没有代码处理这个异常，因此Java启用默认处理机制，即打印异常栈信息到屏幕，并退出程序</p>
+<p>在介绍函数调用原理的时候，我们介绍过栈，异常栈信息就包括了从异常发生点到上层调用者的轨迹，并且包括行号。</p>
+<p>Java的默认异常处理机制是退出程序，异常发生点后的代码都不会执行</p>
+<h3 id="NumberFormatException"><a href="#NumberFormatException" class="headerlink" title="NumberFormatException"></a>NumberFormatException</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (s == <span class="keyword">null</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> NumberFormatException(<span class="string">"null"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (radix &lt; Character.MIN_RADIX) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> NumberFormatException(<span class="string">"radix "</span> + radix +</span><br><span class="line">                                    <span class="string">" less than Character.MIN_RADIX"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (radix &gt; Character.MAX_RADIX) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> NumberFormatException(<span class="string">"radix "</span> + radix +</span><br><span class="line">                                    <span class="string">" greater than Character.MAX_RADIX"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的代码来自 Interger 类， throw 关键字可以与return关键字进行对比。return代表正常退出，throw代表异常退出；return的返回位置是确定的，就是上一级调用者，而throw后执行哪行代码则无法确定，由异常处理机制动态确定。</p>
+<p>异常处理机制会从当前函数开始查找，看谁捕获了这个异常，当前函数没有就查看上一层，直到主函数也没有，就使用默认机制，即输出异常栈信息并退出。</p>
+<h2 id="异常类"><a href="#异常类" class="headerlink" title="异常类"></a>异常类</h2><h3 id="Throwable"><a href="#Throwable" class="headerlink" title="Throwable"></a>Throwable</h3><p>之前提及的 NullPointerException 和 NumberFormatException 都是异常类，所有异常类都有一个公共的父类Throwable<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Throwable</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Throwable</span><span class="params">(String message)</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Throwable</span><span class="params">(String message, Throwable cause)</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Throwable</span><span class="params">(Throwable cause)</span></span></span><br></pre></td></tr></table></figure></p>
+<p>Throwable 类有两个主要参数：一个是message, 表示异常消息；另一个是cause,表示触发该异常的其他异常。异常可以形成一个异常链，上层的异常由底层异常触发，cause表示底层异常。Throwable 还有一个public方法用于设置cause:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Throwable <span class="title">initCause</span><span class="params">(Throwable cause)</span></span></span><br></pre></td></tr></table></figure></p>
+<p>Throwable的某些子类没有带cause参数的构造方法，就可以通过这个方法来设置，这个方法最多只能被调用一次。在所有构造方法的内部，都有一句重要的函数调用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fillInStackTrace()</span><br></pre></td></tr></table></figure></p>
+<p>它会将异常栈信息保存下来，这是使用者能看到异常栈的关键。Throwable有一些常用方法用于获取异常信息<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printStackTrace</span><span class="params">()</span> <span class="comment">//打印异常栈信息到标准错误输出流</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printStackTrace</span><span class="params">(PrintStream s)</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printStackTrace</span><span class="params">(PrintWriter s)</span></span></span><br><span class="line"><span class="function">String <span class="title">getMessage</span><span class="params">()</span> <span class="comment">//获取设置的异常message</span></span></span><br><span class="line"><span class="function">Throwable <span class="title">getCause</span><span class="params">()</span> <span class="comment">//获取异常的cause</span></span></span><br><span class="line"><span class="function">StackTraceElement[] <span class="title">getStackTrace</span><span class="params">()</span> <span class="comment">//获取异常栈每一层的信息，每个StackTraceElement包括文件名，类名，函数名，行号等信息</span></span></span><br></pre></td></tr></table></figure></p>
+<h3 id="异常类体系"><a href="#异常类体系" class="headerlink" title="异常类体系"></a>异常类体系</h3><p>Throwable是所有异常的基类，它有两个子类：Error 和 Exception</p>
+<p>Error 表示系统错误或资源耗尽，有Java系统自己使用，应用程序不应抛出和处理，比如 虚拟机错误 （VirtualMacheError） 以及子类内存溢出错误（OutOfMemoryError）和 栈溢出错误（StackOverflowError）</p>
+<p>Exception 表示应用程序错误，它有很多子类，应用程序也可以通过继承 Exception 或 其子类创建自定义异常，比如三个直接子类：IOException 、RuntimeException 、SQLException</p>
+<p>RuntimeException 比较特殊，它的名字有误导性，因为其他异常也是运行时产生的，它表示的实际含义是未受检异常（unchecked exception）,相对而言，Exception 的其他子类 和 Exception自身则是受检异常（checked exception）, Error 及其子类也是未受检异常。</p>
+<p>受检异常和未受检异常的区别在于Java如何处理这两种异常。对于受检异常，Java会强制要求程序员进行处理否则会有编译错误，而对于未受检异常则没有这个要求。</p>
+<p>RuntimeException 也有很多子类，比如 NullPointerException, NumberFormatExcetion, IllegalStateException, IndexOutOfBoundsException, ClassCastException, ArrayIndexOutOfBoundsException, IllegalArgumentException, StringIndexOutOfBoundsException</p>
+<h3 id="自定义异常"><a href="#自定义异常" class="headerlink" title="自定义异常"></a>自定义异常</h3><p>除了Java API中定义的异常类，也可以自己定义异常类，一般是继承Exception或它的某个子类。如果父类是RuntimeException或它的某个子类，则自定义异常也是未受检异常；如果是Exception或Exception 的其他子类，则自定义异常是受检异常。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppException</span> <span class="keyword">extends</span> <span class="title">Exception</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AppException</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AppException</span><span class="params">(String message, Throwable cause)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(message, cause);</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AppException</span><span class="params">(String message)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(message);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AppException</span><span class="params">(Throwable cause)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(cause);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>和很多其他异常类一样，我们没有定义额外的属性和代码，只是继承了Exception,定义了构造方法并调用了父类的构造方法。</p>
+<h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><h3 id="catch匹配"><a href="#catch匹配" class="headerlink" title="catch匹配"></a>catch匹配</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">//可能触发异常的代码</span></span><br><span class="line">&#125; <span class="keyword">catch</span>(NumberFormatException e) &#123;</span><br><span class="line">    System.out.println(<span class="string">"not valid number"</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span>(RuntimeException e) &#123;</span><br><span class="line">    System.out.println(<span class="string">"runtime exception "</span> + e.getMessage());</span><br><span class="line">&#125; <span class="keyword">catch</span>(Exception e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>异常处理机制将根据抛出的异常类型找第一个匹配的catch块，找到后，执行catch块内的代码，不再执行其他catch块，如果没有找到，会继续到上层方法中查找。需要注意的是，抛出的异常类型是catch中声明异常的子类也算匹配，所以需要将最具体的子类放在前面，如果基类Exception放在前面，则其他更具体的catch代码将得不到执行。</p>
+<p>在Java 7 开始支持一种新的语法，多个异常之间可以用”|”操作符<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">//可能触发异常的代码</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception A | Exception B) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="重新抛出异常"><a href="#重新抛出异常" class="headerlink" title="重新抛出异常"></a>重新抛出异常</h3><p>在catch块内处理完后，可以重新抛出异常，异常可以是原来的，也可以是新建的<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">//可能触发异常的代码</span></span><br><span class="line">&#125; <span class="keyword">catch</span>(NumberFormatException e) &#123;</span><br><span class="line">    System.out.println(<span class="string">"not valid number"</span>);</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> AppException(<span class="string">"输入格式不正确"</span>, e);</span><br><span class="line">&#125; <span class="keyword">catch</span>(Exception e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">    <span class="keyword">throw</span> e;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>示例代码中，对于Exception,在打印出异常栈后，就通过throw e重新抛出</p>
+<p>而对于NumberFormatException, 重新抛出了一个AppException, 当前Exception作为cause传递给了AppException,这样就形成了一个异常链，捕获到AppException的代码可以通过getCause()得到NumberFormatException。</p>
+<h3 id="finally"><a href="#finally" class="headerlink" title="finally"></a>finally</h3><p>异常机制中还有一个重要的部分，就是finally。catch后面可以跟finally语句，语法如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="comment">//可能抛出异常</span></span><br><span class="line">&#125; <span class="keyword">catch</span>(Exception e) &#123;</span><br><span class="line">    <span class="comment">//捕获异常</span></span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="comment">//不管有无异常都执行</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>finally内的代码不管有无异常发生，都会执行，具体来说</p>
+<ul>
+<li>如果没有异常发生，在try内的代码执行结束后执行</li>
+<li>如果有异常发生且被catch捕获，在catch内的代码执行结束后执行</li>
+<li>如果有异常发生但没被捕获，则在异常被抛给上层之前执行</li>
+</ul>
+<p>由于finally的这个特点，它一般用于释放资源，如数据库连接、文件流等</p>
+<p>try/catch/finally 语法中，catch不是必需的，也就是可以只有try/finally, 表示不捕获异常，异常自动向上传递，但finally中的代码在异常发生后也执行。</p>
+<p>finally 语句有一个执行细节，如果在try或者catch语句内有return语句，则return语句在finally语句执行结束后才执行，但finally并不能改变返回值<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        ret = <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这个函数的返回值是0，而不是2。实际执行过程是：在执行到try内的return ret; 语句前，会先将返回值ret保存在一个临时变量中，然后才执行finally语句，最后try再返回那个临时变量，finally中对ret的修改不会被返回。</p>
+<p>如果在finally中也有return语句呢？try和catch内的return会丢失，实际会返回finally中的返回值。finally中有return不仅仅会覆盖try和catch内的返回值，还会掩盖try和catch内的异常，就像异常没有发生一样，比如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">int</span> a = <span class="number">5</span>/<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>以上代码中，5/0 会触发ArithmeticException,但是finally中有return语句，这个方法就会返回2，而不再向上传递异常了。finally中，如果finally中抛出了异常，则原异常也会被掩盖<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">int</span> a = <span class="number">5</span>/<span class="number">0</span>;</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RunTimeException(<span class="string">"hello"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>finally中抛出了RuntimeException,则原异常ArithmeticException就丢失了，所以不应该在return语句或者抛出异常，如果调用的其他代码可能抛出异常，则应该捕获异常并进行处理</p>
+<h3 id="try-with-resources"><a href="#try-with-resources" class="headerlink" title="try-with-resources"></a>try-with-resources</h3><p>对于一些使用资源的场景，比如文件和数据库连接，典型的使用流程是首先打开资源，最后在finally语句中调用资源的关闭方法，针对这种场景，Java 7 开始支持 try-with-resources, 这种语法针对实现了java.lang.AutoCloseable接口的对象，该接口定义为：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AutoCloseable</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">close</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>没有try-with-resources时，使用形式如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">useResource</span><span class="params">()</span> throw Exception </span>&#123;</span><br><span class="line">    AutoCloseable r = <span class="keyword">new</span> FileInputStream(<span class="string">"hello"</span>);</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">//使用资源</span></span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        r.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>使用try-with-resources语法，形式如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">useResource</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="comment">//创建资源</span></span><br><span class="line">    <span class="keyword">try</span>(AutoCloseable r = <span class="keyword">new</span> FileInputStream(<span class="string">"hello"</span>)) &#123;</span><br><span class="line">        <span class="comment">//使用资源</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>资源r的声明和初始化放在try语句内，不用再调用finally，在语句执行完try语句后，会自动调用资源的close()方法</p>
+<h3 id="throws"><a href="#throws" class="headerlink" title="throws"></a>throws</h3><p>异常机制中，还有一个和throw很像的关键字throws,用于声明一个方法可能抛出的异常，语法如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> <span class="keyword">throws</span> AppException,SQLException,NumberFormatException </span>&#123;</span><br><span class="line">    <span class="comment">//主体代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/12/23/异常/" data-id="cjq0ga6qo0000ugupu666f4ti" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/12/16/类的扩展/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">类的拓展</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/12/23/异常/">异常</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/16/类的扩展/">类的拓展</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/15/并发基础知识/">并发基础知识</a>
+          </li>
+        
+          <li>
+            <a href="/2018/12/02/类的继承/">类的继承</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/25/线程池/">线程池</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 GuHao0822<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
