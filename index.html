@@ -144,6 +144,117 @@
 
 
   
+    <article id="post-事务隔离" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/23/事务隔离/" class="article-date">
+  <time datetime="2018-12-22T16:00:00.000Z" itemprop="datePublished">2018-12-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/23/事务隔离/">事务隔离</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>事务就是要保证一组数据库操作，要么全部成功，要么全部失败<br>mysql 的引擎中 MyISAM 不支持事务，这是 MyISAM 被InnoDB取代的重要原因之一</p>
+</blockquote>
+<h2 id="隔离性与隔离级别"><a href="#隔离性与隔离级别" class="headerlink" title="隔离性与隔离级别"></a>隔离性与隔离级别</h2><p>事务 (ACID)</p>
+<ul>
+<li>A Atomicity 原子性</li>
+<li>C Consistency 一致性</li>
+<li>I Isolation 隔离性</li>
+<li>D Durability 持久性</li>
+</ul>
+<p>当数据库上有多个事务同时执行的时候，就有可能出现脏读(dirty read)、不可重复读(non-repeatable read)、幻读（phantom read）, 隔离级别的出现就是为了解决这些问题</p>
+<p>隔离级别设置的越严实，数据库效率就越低，所以需要找到一个平衡点。SQL标准的事务隔离级别有</p>
+<ul>
+<li>读未提交 read uncommitted 一个事务还没提交时，它做的变更就能被别的事务看到</li>
+<li>读提交 read committed 一个事务提交之后，它做的变更才会被其他事务看到</li>
+<li>可重复读 repeatable read 一个事务执行过程中看到的数据，总是跟这个事务在启动时看到的数据是一致的，未提交变更对其他事务也是不可见的</li>
+<li>串行化 serializable 对于同一行记录，写会加写锁，读会加读锁，当出现冲突时，后访问的事务必须等前一个事务执行完成，才能继续执行</li>
+</ul>
+<p>看一个例子<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create table T(c int) engine=InnoDB;</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> T(c) <span class="keyword">values</span>(<span class="number">1</span>);</span><br></pre></td></tr></table></figure></p>
+<table>
+<thead>
+<tr>
+<th>事务A</th>
+<th>事务B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>启动事务 查询取值 1</td>
+<td>启动事务</td>
+</tr>
+<tr>
+<td></td>
+<td>查询取值 1</td>
+</tr>
+<tr>
+<td></td>
+<td>将1改为2</td>
+</tr>
+<tr>
+<td>查询取值V1</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>提交事务B</td>
+</tr>
+<tr>
+<td>查询取值V2</td>
+<td></td>
+</tr>
+<tr>
+<td>提交事务A</td>
+<td></td>
+</tr>
+<tr>
+<td>查询取值v3</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>读未提交， V1 为2，事务B虽然还没有提交，但是结果已经被A看到， V2 和 V3 都是 2</li>
+<li>读提交， V1 是1， v2 是 2， 事务B更新在提交后才能被A看到， v3 是 2</li>
+<li>可重复读， V1 ， V2 是 1， V3 是 2， 之所以 V2 是 1， 因为事务在执行期间看到的数据前后必须是一致的</li>
+<li>串行化， 事务B执行“将1改成2”的时候，会被锁住。直到事务A提交后，事务B才可以继续执行，所以从A的角度看，V1 和 V2 的值是 1 ， V3的值是 2</li>
+</ul>
+<p>实现上，数据库里面会创建一个视图，访问的时候以视图的逻辑结果为准。在“可重复读”隔离级别下，这个视图是在事务启动时创建的，整个事务存在期间都用这个视图。在“读提交”隔离级别下，这个视图是在每个SQL语句开始执行的时候创建。“读未提交”隔离级别直接返回记录上的最新值，没有视图概念。在“串行化”隔离级别下，直接用加锁的方式来避免并行访问。</p>
+<p>Oracle 数据库的默认隔离级别是 “读提交”， Mysql 的默认隔离级别是 “可重复读”</p>
+<h2 id="事务隔离的实现"><a href="#事务隔离的实现" class="headerlink" title="事务隔离的实现"></a>事务隔离的实现</h2><p>在MySQL中，实际上每条记录在更新的时候都会记录一条回滚操作。记录上的最新值。通过回滚操作，都可以得到前一个状态的值。</p>
+<p>长事务意味着系统里面会存在很老的事务视图。由于这些事务随时可能访问数据库里面的任何数据，所以这个事务提交之前，数据库里面它可能用到的回滚记录都必须保留，这就会导致大量占用存储空间。所以尽量不要使用长事务。</p>
+<h2 id="事务的启动方式"><a href="#事务的启动方式" class="headerlink" title="事务的启动方式"></a>事务的启动方式</h2><p>Mysql的事务启动方式</p>
+<ul>
+<li>显示启动事务语句, begin 或 start transaction。配套的提交语句是commit, 回滚语句是rollback</li>
+<li>set autocommit = 0, 这个命令会将这个线程的自动提交关掉，意味着如果你只执行一个 select 语句，这个事务就启动了，而且不会自动提交。这个事务持续存在直到主动执行 commit 或 rollback 语句，或者断开连接</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/12/23/事务隔离/" data-id="cjq0lasle0000s0uproyxncam" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-类的扩展" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/12/16/类的扩展/" class="article-date">
@@ -676,6 +787,10 @@
           </li>
         
           <li>
+            <a href="/2018/12/23/事务隔离/">事务隔离</a>
+          </li>
+        
+          <li>
             <a href="/2018/12/16/类的扩展/">类的拓展</a>
           </li>
         
@@ -685,10 +800,6 @@
         
           <li>
             <a href="/2018/12/02/类的继承/">类的继承</a>
-          </li>
-        
-          <li>
-            <a href="/2018/11/25/线程池/">线程池</a>
           </li>
         
       </ul>
