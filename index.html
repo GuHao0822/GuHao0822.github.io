@@ -62,6 +62,68 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Spring-Bean" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/30/Spring-Bean/" class="article-date">
+  <time datetime="2018-12-29T16:00:00.000Z" itemprop="datePublished">2018-12-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/30/Spring-Bean/">Spring-Bean</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Bean"><a href="#Bean" class="headerlink" title="Bean"></a>Bean</h2><p>在基于Spring的应用中，你的应用对象生存于Spring容器中(container)中。Spring容器负责创建对象，装配它们，配置它们并管理它们的整个生命周期，从生存到死亡(new 到 finalize)</p>
+<p>Spring容器大致分为两种，bean工厂（beanFactory）和 应用上下文（ApplicationContext）, 通常情况下我们只使用应用上下文。</p>
+<h3 id="使用应用上下文"><a href="#使用应用上下文" class="headerlink" title="使用应用上下文"></a>使用应用上下文</h3><ul>
+<li>AnnotationConfigApplicationContext 从一个或多个基于Java 的配置类中加载Spring应用上下文</li>
+<li>AnnotationConfigWebApplicationContext 从一个或者多个基于Java的配置类中加载Spring Web应用上下文</li>
+<li>ClassPathXmlApplicationContext 从类路径下的一个或多个XML配置文件中加载上下文定义，把应用上下文的定义文件作为类资源</li>
+<li>FileSystemXmlApplicationContext 从文件系统下的一个或者多个XML配置文件中加载上下文定义</li>
+<li>XmlWebApplicationContext 从Web应用下的一个或者多个XML配置文件中加载上下文定义<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ApplicationContext context = <span class="keyword">new</span> FileSystemXmlApplicationContext(<span class="string">"c:\\profile.xml"</span>)</span><br><span class="line"></span><br><span class="line">or</span><br><span class="line"></span><br><span class="line">ApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"profile.xml"</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>两者的区别在于 FileSystem 在指定的文件系统下查找 profile.xml, 而ClassPath是在所有的类路径（包含JAR文件）下查找profile.xml</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ApplicationContext context = <span class="keyword">new</span> AnnotationConfigApplicationContext(com.test.config.profile.class);</span><br></pre></td></tr></table></figure>
+<p>通过class加载配置类</p>
+<h3 id="bean的生命周期"><a href="#bean的生命周期" class="headerlink" title="bean的生命周期"></a>bean的生命周期</h3><p>在传统的Java应用中，bean的生命周期很简单，使用Java关键字new进行bean实例化，然后就可以使用了，一旦不再使用，则由Java自动进行垃圾回收。</p>
+<p>spring容器中的bean的生命周期就要复杂一点，如下</p>
+<ul>
+<li>Spring对bean进行实例化</li>
+<li>Spring将值和bean的引用注入到bean对应的属性中</li>
+<li>如果bean实现了BeanFactoryAware接口，Spring将bean的ID传递给setBeanName()方法</li>
+<li>如果bean实现了ApplicationContextAware接口，Spring将调用setApplicationContext()方法，将bean所在的应用上下文的引用传入进来</li>
+<li>如果bean实现了BeanPostProcessor接口，Spring将调用它们的postProcessBeforeInitialization()方法</li>
+<li>如果bean实现了InitializingBean接口，Spring将调用它们的afterPropertiesSet()方法。类似地，如果bean使用init-method声明了初始化方法，该方法也会被调用</li>
+<li>如果bean实现BeanPostProcessor接口，Spring将调用它们的postProcessAfterInitialization()方法</li>
+<li>此时，bean已经准备就绪，可以被应用程序使用了，它们将一直驻留在应用上下文中，直到该应用上下文被销毁</li>
+<li>如果bean实现了DisposableBean接口，Spring将调用它的destory()接口方法。同样，如果Bean使用destory-method声明了销毁方法，该方法也会被调用。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/12/30/Spring-Bean/" data-id="cjqa8xo990000ysupeqirpw3b" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-异常" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/12/23/异常/" class="article-date">
@@ -783,6 +845,10 @@
       <ul>
         
           <li>
+            <a href="/2018/12/30/Spring-Bean/">Spring-Bean</a>
+          </li>
+        
+          <li>
             <a href="/2018/12/23/异常/">异常</a>
           </li>
         
@@ -796,10 +862,6 @@
         
           <li>
             <a href="/2018/12/15/并发基础知识/">并发基础知识</a>
-          </li>
-        
-          <li>
-            <a href="/2018/12/02/类的继承/">类的继承</a>
           </li>
         
       </ul>
